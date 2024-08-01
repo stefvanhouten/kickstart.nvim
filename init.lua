@@ -358,8 +358,11 @@ require('lazy').setup({
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
-
+        pickers = {
+          find_files = {
+            hidden = true,
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -372,11 +375,11 @@ require('lazy').setup({
             theme = 'dropdown',
             order_by = 'asc',
             search_by = 'title',
-            sync_with_nvim_tree = true, -- default false
+            sync_with_nvim_tree = false, -- default false
             -- default for on_project_selected = find project files
             on_project_selected = function(prompt_bufnr)
               local project_actions = require 'telescope._extensions.project.actions'
-              project_actions.change_working_directory(prompt_bufnr, false)
+              project_actions.change_working_directory(prompt_bufnr, true)
             end,
           },
         },
